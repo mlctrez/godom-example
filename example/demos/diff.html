@@ -3,9 +3,12 @@
         <div class="row">
             <div class="col">
                 <p>
-                    An example that interacts with the backend.
-                    The show button performs a GET request to /diff/api for git diff output.
-                    The commit button performs a POST to with /diff/api with the commit message.
+                    An example that interacts with a backend.
+                    The show button updates the page with the results of a git diff on the server.
+                    The commit button performs a POST to /diff/api with a commit message in a header.
+                </p>
+                <p>
+                    For github pages, the requests are still attempted, but they result in 404 and 405 statuses.
                 </p>
                 <form class="d-flex mb-2 mb-lg-0">
                     <button data-go="showDiff" type="button" class="btn btn-primary">show</button>

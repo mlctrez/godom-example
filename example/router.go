@@ -33,16 +33,15 @@ func (e *router) Headers(ctx *app.Context, header godom.Element) {
 	if header.Parent() != nil {
 		header.Parent().SetAttribute("data-bs-theme", "dark")
 	}
-	for i, node := range header.ChildNodes() {
+	doc := ctx.Doc
+	for _, node := range header.ChildNodes() {
 		if node.NodeName() == "title" {
 			// TODO: simplify this
-			oldTitle := header.ChildNodes()[i]
-			header.ChildNodes()[i] = ctx.Doc.H("<title>godom</title>")
-			oldTitle.(godom.Element).Remove()
+			node.ChildNodes()[0] = doc.T("godom-example")
 		}
 	}
 	if len(header.GetElementsByTagName("link")) == 0 {
-		header.Body(ctx.Doc.H(headHtml).ChildNodes()...)
+		header.Body(doc.H(headHtml).ChildNodes()...)
 	}
 }
 

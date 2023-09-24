@@ -2,7 +2,7 @@ module github.com/mlctrez/godom-example
 
 go 1.21
 
-require github.com/mlctrez/godom v0.4.2
+require github.com/mlctrez/godom v0.5.0
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
