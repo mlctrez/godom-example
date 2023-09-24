@@ -29,8 +29,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.21.0'
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          go mod download
+      - name: Build static content
+        run: |
+          go run example/pages/main.go
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
