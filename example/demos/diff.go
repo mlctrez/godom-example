@@ -37,6 +37,9 @@ func Diff(ctx *app.Context) godom.Element {
 		go func() {
 			req := &gfet.Request{URL: "/diff/api"}
 			res, err := req.Fetch()
+			if res.Status != 200 {
+				err = fmt.Errorf("invalid response %d : %s", res.Status, res.StatusText)
+			}
 			clearChildNodes()
 			if err != nil {
 				de.Diff.AppendChild(doc.T(fmt.Sprintf("error : %s\n", err.Error())))
@@ -52,6 +55,9 @@ func Diff(ctx *app.Context) godom.Element {
 				Headers: map[string]string{"commit-message": de.CommitMessage.This().Get("value").String()},
 			}
 			res, err := req.Fetch()
+			if res.Status != 200 {
+				err = fmt.Errorf("invalid response %d : %s", res.Status, res.StatusText)
+			}
 			clearChildNodes()
 			if err != nil {
 				de.Diff.AppendChild(doc.T(fmt.Sprintf("error : %s\n", err.Error())))
