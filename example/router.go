@@ -51,7 +51,7 @@ func (e *router) Body(ctx *app.Context) godom.Element {
 
 	body := d.El("body").Body(navbar.Render(ctx))
 	switch ctx.URL.Path {
-	case "/":
+	case "/", "/godom-example/":
 		return body
 	case "/exampleOne":
 		return body.Body(demos.ExampleOne(ctx))
