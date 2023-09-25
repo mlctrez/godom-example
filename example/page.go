@@ -2,6 +2,7 @@ package example
 
 import (
 	_ "embed"
+	"fmt"
 	"strings"
 
 	"github.com/mlctrez/godom"
@@ -49,6 +50,10 @@ var indexHtml string
 
 func (p *page) Body(ctx *app.Context) godom.Element {
 	d := ctx.Doc
+
+	titleElement := p.Root.GetElementsByTagName("title")[0]
+	titleElement.RemoveChild(titleElement.ChildNodes()[0].This())
+	titleElement.AppendChild(d.T(fmt.Sprintf("page %s", ctx.URL.Path)))
 
 	body := d.El("body").Body(navbar.Render(ctx))
 	switch ctx.URL.Path {
