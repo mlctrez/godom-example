@@ -40,7 +40,7 @@ jobs:
           go mod download
       - name: Build static content
         run: |
-          go run example/pages/main.go
+          go run github/main.go
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

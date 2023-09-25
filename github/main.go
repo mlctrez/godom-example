@@ -31,7 +31,12 @@ func main() {
 }
 
 func copyFiles() (err error) {
-	files := []string{"index.html", "app.js"}
+	files := []string{
+		"index.html",
+		"bootstrap.min.css",
+		"bootstrap.bundle.min.js",
+		"app.js",
+	}
 	for _, f := range files {
 		if err = copyUrlToFile(f); err != nil {
 			return err
