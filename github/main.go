@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -33,10 +34,10 @@ func main() {
 func copyFiles() (err error) {
 	// TODO: make page.go provide these
 	files := []string{
-		"",
-		"exampleOne",
-		"diff",
-		"editor",
+		"index.html",
+		"exampleOne.html",
+		"diff.html",
+		"editor.html",
 		"bootstrap.min.css",
 		"bootstrap.bundle.min.js",
 		"app.js",
@@ -53,9 +54,11 @@ func copyFiles() (err error) {
 func copyUrlToFile(url string) (err error) {
 	var outFile *os.File
 	var out = url
-	if url == "" {
-		out = "index.html"
+	if url == "index.html" {
+		url = ""
 	}
+	url = strings.TrimSuffix(url, ".html")
+
 	if outFile, err = os.Create(filepath.Join("build", out)); err != nil {
 		return err
 	}

@@ -56,6 +56,8 @@ func (p *page) Body(ctx *app.Context) godom.Element {
 	titleElement.RemoveChild(titleElement.ChildNodes()[0].This())
 	titleElement.AppendChild(d.T(fmt.Sprintf("page %s", ctx.URL.Path)))
 
+	fmt.Println("ctx.URL.String()", ctx.URL.String())
+
 	body := d.El("body").Body(navbar.Render(ctx))
 	switch ctx.URL.Path {
 	case "/":
