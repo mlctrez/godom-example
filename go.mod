@@ -4,7 +4,7 @@ go 1.21
 
 //replace github.com/mlctrez/godom => ../godom
 
-require github.com/mlctrez/godom v0.5.1
+require github.com/mlctrez/godom v0.5.2
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect

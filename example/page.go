@@ -52,12 +52,13 @@ func (p *page) Body(ctx *app.Context) godom.Element {
 	d := ctx.Doc
 
 	titleElement := p.Root.GetElementsByTagName("title")[0]
+	// TODO: should be able to use titleElement.ReplaceWith(...)
 	titleElement.RemoveChild(titleElement.ChildNodes()[0].This())
 	titleElement.AppendChild(d.T(fmt.Sprintf("page %s", ctx.URL.Path)))
 
 	body := d.El("body").Body(navbar.Render(ctx))
 	switch ctx.URL.Path {
-	case "/", "/godom-example/":
+	case "/":
 		body.AppendChild(d.H(indexHtml))
 		p.DarkMode.AddEventListener("click", func(event godom.Value) {
 			htmlElement := p.Root.This()
